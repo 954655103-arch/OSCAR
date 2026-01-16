@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026影院活动全年度营销日历 ✨</title>
+    <style>
+        :root {
+            --q1-color: #FF4D4D;
+            --q2-color: #4CAF50;
+            --q3-color: #FF9800;
+            --q4-color: #673AB7;
+            --bg-color: #F0F2F5;
+            --card-bg: #FFFFFF;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background-color: var(--bg-color);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .phone-mockup {
+            width: 100%;
+            max-width: 480px;
+            background: var(--bg-color);
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            padding-bottom: 60px;
+            position: relative;
+        }
+
+        /* 头部：保持主色不变，增加光感 */
+        .hero {
+            background: linear-gradient(180deg, #FF6B6B 0%, #FF8E53 100%);
+            padding: 50px 24px;
+            color: white;
+            text-align: left;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+            margin-bottom: -25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 放映机光晕装饰 */
+        .hero::before {
+            content: "🎬";
+            position: absolute;
+            right: -20px;
+            top: 20px;
+            font-size: 120px;
+            opacity: 0.1;
+            transform: rotate(-15deg);
+        }
+
+        .hero h1 { margin: 0; font-size: 28px; font-weight: 800; position: relative; z-index: 1; }
+        .hero p { margin: 12px 0 0; font-size: 14px; opacity: 0.9; letter-spacing: 1px; position: relative; z-index: 1; }
+
+        .quarter-container { padding: 0 16px; margin-top: 50px; }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 24px 28px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.04);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 侧边胶片齿孔效果 */
+        .card::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 8px;
+            height: 100%;
+            background-image: radial-gradient(circle, #E0E0E0 30%, transparent 35%);
+            background-size: 8px 18px;
+            background-position: center;
+            opacity: 0.8;
+        }
+        
+        .q1::after { content: ""; position: absolute; top: 0; right: 0; width: 4px; height: 100%; background-color: var(--q1-color); }
+        .q2::after { content: ""; position: absolute; top: 0; right: 0; width: 4px; height: 100%; background-color: var(--q2-color); }
+        .q3::after { content: ""; position: absolute; top: 0; right: 0; width: 4px; height: 100%; background-color: var(--q3-color); }
+        .q4::after { content: ""; position: absolute; top: 0; right: 0; width: 4px; height: 100%; background-color: var(--q4-color); }
+
+        .quarter-header { margin-bottom: 18px; }
+        .quarter-top-row { display: flex; justify-content: space-between; align-items: center; }
+        .quarter-title { font-size: 18px; font-weight: bold; display: flex; align-items: center; gap: 6px; }
+        .quarter-subtitle { font-size: 12px; color: #666; margin-top: 4px; display: block; line-height: 1.4; }
+        
+        .badge { font-size: 11px; padding: 4px 10px; border-radius: 10px; color: white; font-weight: bold; }
+        .q1-badge { background: var(--q1-color); }
+        .q2-badge { background: var(--q2-color); }
+        .q3-badge { background: var(--q3-color); }
+        .q4-badge { background: var(--q4-color); }
+
+        .event-item { margin-bottom: 18px; padding-bottom: 15px; border-bottom: 1px dashed #EEE; }
+        .event-item:last-child { border-bottom: none; }
+
+        .event-top { display: flex; align-items: center; margin-bottom: 6px; flex-wrap: wrap; }
+        .event-date { font-size: 11px; color: #888; background: #F5F5F5; padding: 2px 6px; border-radius: 4px; margin-right: 8px; }
+        .event-name { font-size: 15px; font-weight: bold; color: #333; }
+        .s-level { background: #FFD700; color: #8B4513; padding: 1px 6px; border-radius: 4px; font-size: 10px; margin-left: 6px; font-weight: 800; }
+
+        .tag { font-size: 11px; padding: 2px 8px; border-radius: 6px; background: #F0F2F5; color: #666; margin-right: 5px; margin-top: 5px; display: inline-block; }
+        .tag-active { color: white; }
+        .q1 .tag-active { background: var(--q1-color); }
+        .q2 .tag-active { background: var(--q2-color); }
+        .q3 .tag-active { background: var(--q3-color); }
+        .q4 .tag-active { background: var(--q4-color); }
+
+        .special-box { font-size: 13px; color: #555; margin-top: 10px; padding: 12px; background: #FAFAFA; border-radius: 12px; border-left: 3px solid #DDD; line-height: 1.6; }
+        .q1 .special-box { border-left-color: var(--q1-color); }
+        .q2 .special-box { border-left-color: var(--q2-color); }
+        .q3 .special-box { border-left-color: var(--q3-color); }
+        .q4 .special-box { border-left-color: var(--q4-color); }
+
+        .detail-list { margin: 8px 0 0; padding-left: 18px; }
+        .detail-list li { margin-bottom: 4px; }
+
+        .footer { text-align: center; padding: 40px; color: #AAA; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+<div class="phone-mockup">
+    <div class="hero">
+        <p>2026 CINEMA FULL YEAR PLAN 🎬</p>
+        <h1>影院全年度活动日历 ✨</h1>
+        <p>「让电影院成为社交与治愈的终点站」</p>
+    </div>
+
+    <div class="quarter-container">
+        <!-- Q1 -->
+        <div class="card q1">
+            <div class="quarter-header">
+                <div class="quarter-top-row">
+                    <span class="quarter-title">Q1 迎新春 · 冲票房 🧧</span>
+                    <span class="badge q1-badge">爆发增长</span>
+                </div>
+                <span class="quarter-subtitle">影院现金流最充沛时期，重点在于家庭观影和会员储值。</span>
+            </div>
+
+            <div class="event-item">
+                <div class="event-top">
+                    <span class="event-date">01.01-01.03</span>
+                    <span class="event-name">元旦 / 警察节(01.10)</span>
+                </div>
+                <span class="tag">0点跨年场</span> <span class="tag">致敬蓝衣卫士</span>
+            </div>
+
+            <div class="event-item">
+                <div class="event-top">
+                    <span class="event-date">01.26</span>
+                    <span class="event-name">腊八节</span>
+                </div>
+                <span class="tag tag-active">温暖粥影会</span>
+            </div>
+
+            <div class="event-item">
+                <div class="event-top">
+                    <span class="event-date">02.10-02.16</span>
+                    <span class="event-name">小年 / 情人节 / 除夕</span>
+                </div>
+                <span class="tag">告白弹幕</span> <span class="tag">除夕红包墙</span>
+            </div>
+
+            <div class="event-item">
+                <div class="event-top">
+                    <span class="event-date">02.17</span>
+                    <span class="event-name">马年春节档 🎬</span><span class="s-level">S级</span>
+                </div>
+                <div class="special-box">
+                    🐎 <b>“全家总动员，影院过大年”</b>
+                    <ul class="detail-list">
+                        <li><b>上上签解谜：</b>大厅设置巨型签筒，抽签后根据暗号寻找影廊特定海报打卡。</li>
+                        <li><b>好运入场券：</b>完成任务兑换2026年好运优惠券或满减卡。</li>
+                        <li><b>红包互动：</b>凭票根扫码领红包，提升二销转化。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="event-item">
+                <div class="event-top">
+                    <span class="event-date">03.03 / 03.07</span>
+                    <span class="event-name">元宵节 / 女生节</span>
+                </div>
+                <span class="tag">灯谜会</span> <span class="tag">女生宠爱套餐</span>
+            </div>
+
+            <div class="event-item">
+                <div class="event-top">
+                    <span class="event-date">03.08</span>
+                    <span class="event-name">妇女节：做自己的大女主 👑</span>
+                </div>
+                <div class="special-box">
+                    💄 <b>“她经济”悦己方案</b>
+                    <ul class="detail-list">
+                        <li><b>半价特惠：</b>针对女性观众推出特定时段购票5折优惠。</li>
+                        <li><b>异业悦己：</b>凭票根可享受合作商家的SPA或美甲折扣体验。</li>
+                        <li><b>大女主礼包：</b>随票附赠限量版电影金句书签。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="event-item">
+                <div class="event-top">
+                    <span class="event-date">03.12 / 03.15</span>
+                    <span class="event-name">植树节 / 315权益日</span>
+                </div>
+                <span class="tag">绿色环保公益</span> <span class="tag">品质服务承诺</span>
+            </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="card q2">
+            <div class="quarter-header">
+                <div class="quarter-top-row">
+                    <span class="quarter-title">Q2 淡季突围 · 抓住小长假 🎥</span>
+                    <span class="badge q2-badge">社交突围</span>
+                </div>
+                <span class="quarter-subtitle">通常是票房冷淡期，重点在于社群运营和特色活动。</span>
+            </div>
+
+            <div class="event-item">
+                <div class="event-top">
+                    <span class="event-date">04.01 / 04.05 / 04.22</span>
+                    <span class="event-name">愚人节 / 清明节 / 地球日</span>
+                </div>
+                <span class="tag">9.9元盲盒电影</span> <span class="tag">治愈系观影</span>
+            </div>
+
+            <div class="event-item">
+                <div class="event-top">
+                    <span class="event-date">05.01-05.05</span>
+                    <span class="event-name">劳动节：打工人暂停键 🎬</span><span class="s-level">A级</span>
+                </div>
+                <div class="special-box">
+                    🥤 <b>打工人补给站策划</b>
+                    <ul class="detail-list">
+                        <li><b>凭证优惠：</b>凭工牌或名片，购买卖品套餐享8折。</li>
+                        <li><b>通宵马拉松：</b>连映经典大片系列，为特种兵观众提供留宿场所。</li>
+                        <li><b>充电特惠：</b>针对劳模及先进个人提供免费观影场。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="event-item">
+                <div class="event-top">
+                    <span class="event-date">05.04 / 05.12</span>
+                    <span class="event-name">青年节 / 护士节</span>
+                </div>
+                <span class="tag">致敬奋斗</span> <span class="tag">情绪急救包</span>
+            </div>
+
+            <div class="event-item">
+                <div class="event-top">
+                    <span class="event-date">05.10</span>
+                    <span class="event-name">母亲节：致敬超人妈妈 🌹</span>
+                </div>
+                <div class="special-box">
+                    🌸 <b>“影爱有你，花漾时光”</b>
+                    <ul class="detail-list">
+                        <li><b>温情礼赠：</b>母亲观影赠送康乃馨一支及定制“超人妈妈”勋章。</li>
+                        <li><b>岁月影像：</b>大厅设置老照片对比墙，互动打卡即赠爆米花升杯。</li>
+                        <li><b>专属套餐：</b>推出“母女下午茶电影餐”，附带低卡轻食。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="event-item">
+                <div class="event-top">
+                    <span class="event-date">05.20</span>
+                    <span class="event-name">520：心动盲盒 ❤️</span>
+                </div>
+                <span class="tag tag-active">电影搭子盲抽</span> <span class="tag tag-active">双人特饮</span>
+            </div>
+
+            <div class="event-item">
+                <div class="event-top">
+                    <span class="event-date">06.01</span>
+                    <span class="event-name">儿童节：童心不设限 🎈</span>
+                </div>
+                <div class="special-box">
+                    🧸 <b>“小小放映员”职业体验</b>
+                    <ul class="detail-list">
+                        <li><b>探秘放映室：</b>亲子家庭参与影院幕后导览，了解电影放映流程。</li>
+                        <li><b>变装秀场：</b>穿着电影角色服装入场的小朋友，获赠限量周边及贴纸。</li>
+                        <li><b>满分奖励：</b>凭满分考卷购票（或凭证件），小朋友可领免费迷你爆米花一份。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="event-item">
+                <div class="event-top">
+                    <span class="event-date">06.05 / 06.18 / 06.19</span>
+                    <span class="event-name">环境日 / 618大促 / 端午节</span>
+                </div>
+                <span class="tag">年中储值大促</span> <span class="tag">端午粽情观影</span>
+            </div>
+
+            <div class="event-item">
+                <div class="event-top">
+                    <span class="event-date">06.21</span>
+                    <span class="event-name">父亲节：硬核老爸展映 🥊</span>
+                </div>
+                <div class="special-box">
+                    🥊 <b>“我爸比电影主角还硬核”</b>
+                    <ul class="detail-list">
+                        <li><b>力量挑战：</b>在大厅设置“掰手腕”擂台，赢过影院工作人员即获赠通兑票。</li>
+                        <li><b>硬核展映：</b>特设经典硬汉电影点映场（如《极速追杀》类主题）。</li>
+                        <li><b>爸气十足：</b>父亲观影享受卖品套餐立减10元，并赠送影院定制打火机或扇子。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="card q3">
+            <div class="quarter-header">
+                <div class="quarter-top-row">
+                    <span class="quarter-title">Q3 燃情夏日 · 暑期档狂欢 🍿</span>
+                    <span class="badge q3-badge">流量狂欢</span>
+                </div>
+                <span class="quarter-subtitle">暑期档战线长，学生群体是主力，主打“空调、可乐、好电影”。</span>
+            </div>
+
+            <div class="event-item">
+                <div class="event-top">
+                    <span class="event-date">07-08月全月</span>
+                    <span class="event-name">暑期档：MBTI 沉浸季 🎬</span><span class="s-level">S级</span>
+                </div>
+                <div class="special-box">
+                    🧠 <b>“人生如戏”性格分区营销</b>
+                    <ul class="detail-list">
+                        <li><b>分区观影：</b>E人狂欢场（允许互动）与 I人静音场（安静耳机）。</li>
+                        <li><b>性格套餐：</b>J人计划套餐 vs P人随缘套餐（口味随机）。</li>
+                        <li><b>暑期通票：</b>199元任看5场，主打影院是最佳避暑胜地。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="event-item">
+                <div class="event-top">
+                    <span class="event-date">07.01 / 08.01</span>
+                    <span class="event-name">建党节 / 建军节</span>
+                </div>
+                <span class="tag">红色坐标集章</span> <span class="tag">军事模型展</span> <span class="tag">优先通道</span>
+            </div>
+
+            <div class="event-item">
+                <div class="event-top">
+                    <span class="event-date">08.19</span>
+                    <span class="event-name">七夕节：中式浪漫 🏮</span>
+                </div>
+                <div class="special-box">
+                    🏮 <b>“鹊桥相会”古风营销</b>
+                    <ul class="detail-list">
+                        <li><b>古风专场：</b>穿汉服观影送古风扇子或灯笼，打造沉浸式氛围。</li>
+                        <li><b>鹊桥半价：</b>情侣合影打卡朋友圈，即可领取第二张票半价券。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="event-item">
+                <div class="event-top">
+                    <span class="event-date">08.27 / 09.10 / 09.21</span>
+                    <span class="event-name">中元节 / 教师节 / 和平日</span>
+                </div>
+                <span class="tag">“请假条”款券</span> <span class="tag">影院不点名课堂</span>
+            </div>
+
+            <div class="event-item">
+                <div class="event-top">
+                    <span class="event-date">09.25</span>
+                    <span class="event-name">中秋节：花好月圆影团团 🌕</span>
+                </div>
+                <div class="special-box">
+                    🌕 <b>阖家欢团圆方案</b>
+                    <ul class="detail-list">
+                        <li><b>家庭套票：</b>三人行，一人免单（特定亲子场次）。</li>
+                        <li><b>賞月套餐：</b>电影票+定制月饼礼盒捆绑销售，满足伴手礼需求。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="card q4">
+            <div class="quarter-header">
+                <div class="quarter-top-row">
+                    <span class="quarter-title">Q4 国庆爆发 · 团建聚会 🎞️</span>
+                    <span class="badge q4-badge">最后冲刺</span>
+                </div>
+                <span class="quarter-subtitle">国庆档是爆发点，年底则是团建、聚会和年终回馈的高峰。</span>
+            </div>
+
+            <div class="event-item">
+                <div class="event-top">
+                    <span class="event-date">10.01-10.07</span>
+                    <span class="event-name">国庆档：锦鲤狂欢季 🇨🇳</span><span class="s-level">S级</span>
+                </div>
+                <div class="special-box">
+                    🇨🇳 <b>“盛世光影，锦鲤献礼”</b>
+                    <ul class="detail-list">
+                        <li><b>国庆7天抽奖：</b>每日产生一名“国庆锦鲤”，赠送影院定制礼包或2027年全年观影特权。</li>
+                        <li><b>集赞有礼：</b>在影院国庆美陈前拍照并集齐指定数量赞，赠送国庆限定款爆米花桶。</li>
+                        <li><b>爱国影展：</b>开设红色经典点映专区，针对退役军人及教师提供半价观影。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="event-item">
+                <div class="event-top">
+                    <span class="event-date">10.18 / 10.31</span>
+                    <span class="event-name">重阳节 / 万圣节</span>
+                </div>
+                <span class="tag">时空盲盒交换人生</span> <span class="tag">奇妙惊魂夜装扮</span>
+            </div>
+
+            <div class="event-item">
+                <div class="event-top">
+                    <span class="event-date">11.11 / 11.26</span>
+                    <span class="event-name">双十一 / 感恩节</span>
+                </div>
+                <span class="tag">年度低价囤票</span> <span class="tag">老客回馈季</span>
+            </div>
+
+            <div class="event-item">
+                <div class="event-top">
+                    <span class="event-date">12.12 / 12.24-25 / 12.31</span>
+                    <span class="event-name">双十二 / 圣诞 / 店庆 🎂</span>
+                </div>
+                <div class="special-box">
+                    🎂 <b>“影院庆生，全民同乐”</b>
+                    <ul class="detail-list">
+                        <li><b>店庆福利：</b>凭同岁证件或特定名字字符获免费卖品。</li>
+                        <li><b>店庆0点互动场：</b>影厅内大型抽奖及新春预告。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            — 2026，让影院成为有温度的社交空间 🎬 —<br>
+            <span style="letter-spacing: 2px;">CONFIDENTIAL FOR INTERNAL USE</span>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
